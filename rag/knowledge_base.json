@@ -1,0 +1,62 @@
+{
+  "version": "1.0",
+  "description": "RAG knowledge base for Personal Finance Advisor (Step 11)",
+  "documents": [
+    {
+      "id": "doc_001",
+      "title": "50-20-30 Budgeting Rule",
+      "category": "budgeting",
+      "content": "The 50-20-30 rule allocates 50% of net income to needs (rent, food, utilities, EMI), 20% to savings and investments, and 30% to wants (shopping, entertainment, travel). It provides a simple framework for balanced budgeting without complex spreadsheets.",
+      "tags": ["budget", "rule", "savings", "allocation"]
+    },
+    {
+      "id": "doc_002",
+      "title": "Emergency Fund Basics",
+      "category": "savings",
+      "content": "An emergency fund should cover 3-6 months of essential expenses. Park it in a high-yield savings account or liquid mutual fund. Treat it as a non-negotiable monthly transfer, not optional. Aim to build it before investing in equity.",
+      "tags": ["emergency", "fund", "liquid", "savings"]
+    },
+    {
+      "id": "doc_003",
+      "title": "Reducing Food Expenses",
+      "category": "food",
+      "content": "Meal prepping on weekends can reduce weekly food costs by 25-35%. Using a grocery list and avoiding impulse buys at the store saves an average of 20% per trip. Cooking at home is 5x cheaper than ordering in on average.",
+      "tags": ["food", "cooking", "grocery", "savings"]
+    },
+    {
+      "id": "doc_004",
+      "title": "EMI Management Strategy",
+      "category": "emi",
+      "content": "EMIs should not exceed 40-50% of net monthly income. Prioritise high-interest loans (personal loans, credit cards) for prepayment. Use windfalls (bonus, tax refund) to reduce principal. Avoid taking new loans while existing EMIs are active.",
+      "tags": ["emi", "loan", "debt", "prepayment"]
+    },
+    {
+      "id": "doc_005",
+      "title": "Investment Ladder for Beginners",
+      "category": "investment",
+      "content": "Start with: (1) Emergency fund in liquid savings, (2) PPF or NPS for tax benefits, (3) Index mutual funds via SIP for long-term wealth. A simple 3-fund portfolio (large cap index, mid cap index, short bond fund) is sufficient for most retail investors.",
+      "tags": ["investment", "sip", "mutual fund", "ppf", "index"]
+    },
+    {
+      "id": "doc_006",
+      "title": "Credit Card Best Practices",
+      "category": "credit",
+      "content": "Always pay the full statement balance, never just the minimum. This avoids 36-45% annual interest on the revolving balance. Use credit cards only for pre-planned purchases. Set up auto-pay for the full amount to avoid late fees.",
+      "tags": ["credit card", "debt", "interest", "payment"]
+    },
+    {
+      "id": "doc_007",
+      "title": "Subscription Audit",
+      "category": "entertainment",
+      "content": "The average Indian household pays for 3-4 streaming services but actively uses only 1-2. Review all recurring charges on your bank statement quarterly. Cancel unused gym memberships — most gyms charge cancellation fees only within the first 30 days.",
+      "tags": ["subscription", "entertainment", "streaming", "recurring"]
+    },
+    {
+      "id": "doc_008",
+      "title": "Travel Hacking for Savings",
+      "category": "travel",
+      "content": "Book domestic flights 6-8 weeks in advance. Use airline miles credit cards to earn points on all purchases. Consider train travel for distances under 500 km — it is 60-80% cheaper. Compare hotel vs Airbnb pricing 2 weeks before a trip for best rates.",
+      "tags": ["travel", "flights", "miles", "booking"]
+    }
+  ]
+}

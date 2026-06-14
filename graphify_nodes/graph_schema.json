@@ -1,0 +1,47 @@
+{
+  "description": "Graphify relational node schema (Step 18) — Finance Advisor knowledge graph",
+  "nodes": [
+    {"id": "app",              "label": "App Entry",         "type": "module",    "file": "app.py",                              "god_node": true},
+    {"id": "orchestrator",     "label": "Orchestrator",      "type": "agent",     "file": "agents/delegation.py",                "god_node": true},
+    {"id": "backend_agent",    "label": "Backend Agent",     "type": "agent",     "file": "agents/backend_agent.py"},
+    {"id": "frontend_agent",   "label": "Frontend Agent",    "type": "agent",     "file": "agents/frontend_agent.py"},
+    {"id": "triage_agent",     "label": "Triage Agent",      "type": "agent",     "file": "agents/triage_agent.py"},
+    {"id": "analyzer",         "label": "Analyzer",          "type": "module",    "file": "backend/analyzer.py"},
+    {"id": "chatbot",          "label": "Chatbot",           "type": "module",    "file": "backend/chatbot.py"},
+    {"id": "context_mgr",      "label": "Context Manager",   "type": "module",    "file": "backend/context_manager.py"},
+    {"id": "sample_data",      "label": "Sample Data",       "type": "data",      "file": "backend/sample_data.py"},
+    {"id": "rag_engine",       "label": "RAG Engine",        "type": "module",    "file": "rag/rag_engine.py"},
+    {"id": "knowledge_base",   "label": "Knowledge Base",    "type": "data",      "file": "rag/knowledge_base.json"},
+    {"id": "plugins",          "label": "Plugin Registry",   "type": "module",    "file": "plugins/internal_plugins.py"},
+    {"id": "mcp_server",       "label": "MCP Server",        "type": "service",   "file": "mcp/server/mcp_server.py"},
+    {"id": "custom_mcp",       "label": "Custom MCP",        "type": "service",   "file": "mcp/custom/custom_mcp_server.py"},
+    {"id": "otel",             "label": "OTel Setup",        "type": "infra",     "file": "observability/otel/otel_setup.py"},
+    {"id": "grafana",          "label": "Grafana Dashboard", "type": "infra",     "file": "observability/grafana/dashboard.json"},
+    {"id": "k6",               "label": "K6 Load Test",      "type": "test",      "file": "load_testing/k6_load_test.js"}
+  ],
+  "edges": [
+    {"from": "app",            "to": "orchestrator",   "label": "delegates_to"},
+    {"from": "orchestrator",   "to": "backend_agent",  "label": "dispatches"},
+    {"from": "orchestrator",   "to": "frontend_agent", "label": "dispatches"},
+    {"from": "orchestrator",   "to": "triage_agent",   "label": "dispatches"},
+    {"from": "backend_agent",  "to": "analyzer",       "label": "calls"},
+    {"from": "backend_agent",  "to": "chatbot",        "label": "calls"},
+    {"from": "backend_agent",  "to": "rag_engine",     "label": "augments_via"},
+    {"from": "chatbot",        "to": "context_mgr",    "label": "uses"},
+    {"from": "analyzer",       "to": "sample_data",    "label": "reads"},
+    {"from": "rag_engine",     "to": "knowledge_base", "label": "indexes"},
+    {"from": "mcp_server",     "to": "orchestrator",   "label": "exposes"},
+    {"from": "custom_mcp",     "to": "mcp_server",     "label": "extends"},
+    {"from": "custom_mcp",     "to": "plugins",        "label": "exposes"},
+    {"from": "custom_mcp",     "to": "rag_engine",     "label": "exposes"},
+    {"from": "otel",           "to": "grafana",        "label": "feeds"},
+    {"from": "k6",             "to": "app",            "label": "load_tests"}
+  ],
+  "communities": [
+    {"id": "agent_layer",   "members": ["app", "orchestrator", "backend_agent", "frontend_agent", "triage_agent"]},
+    {"id": "backend_core",  "members": ["analyzer", "chatbot", "context_mgr", "sample_data"]},
+    {"id": "rag_layer",     "members": ["rag_engine", "knowledge_base"]},
+    {"id": "mcp_layer",     "members": ["mcp_server", "custom_mcp", "plugins"]},
+    {"id": "infra_layer",   "members": ["otel", "grafana", "k6"]}
+  ]
+}

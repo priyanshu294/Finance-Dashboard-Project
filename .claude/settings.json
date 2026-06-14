@@ -1,0 +1,55 @@
+{
+  "description": "Claude Code settings for Finance Advisor project (Step 3)",
+  "permissions": {
+    "allow": [
+      "Bash(python*)",
+      "Bash(pip*)",
+      "Bash(streamlit*)",
+      "Bash(k6*)",
+      "Bash(pytest*)",
+      "Read(**)",
+      "Write(**)"
+    ],
+    "deny": []
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Running Bash command in Finance Advisor project'"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] File written — consider running pytest tests/'"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo '[Hook] Claude session ended. Run: streamlit run app.py'"
+          }
+        ]
+      }
+    ]
+  },
+  "skills": [
+    {"name": "analyze",    "command": "python -c \"from agents.delegation import orchestrator; import json; print(orchestrator.get_full_analysis('{args}')['analysis']['summary'])\""},
+    {"name": "triage",     "command": "python -c \"from agents.delegation import orchestrator; r=orchestrator.get_full_analysis('{args}'); print(r['triage'].to_markdown())\""},
+    {"name": "mcp-start",  "command": "python mcp/server/mcp_server.py"},
+    {"name": "load-test",  "command": "k6 run load_testing/k6_load_test.js"}
+  ]
+}

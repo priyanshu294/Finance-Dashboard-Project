@@ -1,0 +1,51 @@
+{
+  "__inputs": [],
+  "__requires": [
+    {"type": "panel", "id": "timeseries", "name": "Time series", "version": ""},
+    {"type": "panel", "id": "gauge",      "name": "Gauge",       "version": ""},
+    {"type": "panel", "id": "stat",       "name": "Stat",        "version": ""}
+  ],
+  "annotations": {"list": []},
+  "description": "Finance Advisor — Observability Dashboard (Step 15)",
+  "editable": true,
+  "graphTooltip": 1,
+  "id": null,
+  "panels": [
+    {
+      "id": 1, "type": "stat", "title": "Total Analyses",
+      "datasource": "Prometheus",
+      "targets": [{"expr": "sum(finance_analysis_count_total)", "legendFormat": "Analyses"}],
+      "gridPos": {"h": 4, "w": 6, "x": 0, "y": 0}
+    },
+    {
+      "id": 2, "type": "stat", "title": "Total Chat Turns",
+      "datasource": "Prometheus",
+      "targets": [{"expr": "sum(finance_chat_count_total)", "legendFormat": "Chats"}],
+      "gridPos": {"h": 4, "w": 6, "x": 6, "y": 0}
+    },
+    {
+      "id": 3, "type": "gauge", "title": "Avg Analysis Latency (ms)",
+      "datasource": "Prometheus",
+      "targets": [{"expr": "rate(finance_analysis_duration_ms_sum[5m]) / rate(finance_analysis_duration_ms_count[5m])", "legendFormat": "Avg Latency"}],
+      "fieldConfig": {"defaults": {"min": 0, "max": 500, "thresholds": {"steps": [{"color": "green", "value": null}, {"color": "yellow", "value": 100}, {"color": "red", "value": 300}]}}},
+      "gridPos": {"h": 4, "w": 6, "x": 12, "y": 0}
+    },
+    {
+      "id": 4, "type": "timeseries", "title": "Analysis Rate (req/min)",
+      "datasource": "Prometheus",
+      "targets": [{"expr": "rate(finance_analysis_count_total[1m]) * 60", "legendFormat": "{{customer}}"}],
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 4}
+    },
+    {
+      "id": 5, "type": "timeseries", "title": "Chat Rate (req/min)",
+      "datasource": "Prometheus",
+      "targets": [{"expr": "rate(finance_chat_count_total[1m]) * 60", "legendFormat": "{{customer}}"}],
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 4}
+    }
+  ],
+  "schemaVersion": 38,
+  "tags": ["finance", "advisor", "otel"],
+  "title": "Finance Advisor",
+  "uid": "finance-advisor-v1",
+  "version": 1
+}
