@@ -13,7 +13,6 @@ streamlit run app.py
 ```
 
 Open `http://localhost:8501` in your browser.
-<img width="1440" height="900" alt="wallpaper2you_286624" src="https://github.com/user-attachments/assets/2e86c644-40a2-4c76-9c75-3bd38542bc44" />
 
 
 ---
